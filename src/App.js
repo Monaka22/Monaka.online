@@ -22,11 +22,13 @@ function App() {
           <Layout>
             <Header />
             <Switch>
-            <Route exact={true} path="/" component={Chaewon} />
-            <Route exact={true} path="/ruka" component={Ruka} />
-            <Route exact={true} path="/fuka" component={Fuka} />
-            <Route exact={true} path="/manaka" component={Manaka} />
-            <Route exact={true} path="/suzuka" component={Suzuka} />
+              <div style={{paddingTop : 65}}>
+                <Route exact={true} path="/" component={Chaewon} />
+                <Route exact={true} path="/ruka" component={Ruka} />
+                <Route exact={true} path="/fuka" component={Fuka} />
+                <Route exact={true} path="/manaka" component={Manaka} />
+                <Route exact={true} path="/suzuka" component={Suzuka} />
+              </div>
             </Switch>
           </Layout>
       </Router>

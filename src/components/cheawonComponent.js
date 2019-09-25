@@ -18,7 +18,14 @@ export default class cheawonComponent extends Component {
   }
   componentDidMount() {
     this._isMounted = true;
-    MySwal.showLoading();
+    MySwal.fire({
+      title: 'โหลดภาพอยู่รอแป๊บดิ!!!',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      onOpen: () => {
+        MySwal.showLoading();
+      }
+    })
     this.fetchAuthFromLocalStorage();
   }
   componentWillUnmount() {
@@ -34,12 +41,14 @@ export default class cheawonComponent extends Component {
           querySnapshot.forEach(async doc => {
            await data.push(
               Object.assign({
+                width:NaN,
+                thumbnailHeight:NaN,
                 thumbnailWidth:NaN,
                 marginLeft: 0,
                 scaletwidth: NaN,
                 vwidth: NaN,
                 src: doc.data().src,
-                thumbnail: doc.data().src
+                thumbnail: doc.data().thumbnail
               })
             );
             await this.setState({ photos: data });
@@ -52,7 +61,7 @@ export default class cheawonComponent extends Component {
     return (
       <Card>
         <Content>
-          <Gallery images={this.state.photos}/>
+          <Gallery  images={this.state.photos}/>
         </Content>
       </Card>
     );

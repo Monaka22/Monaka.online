@@ -13,7 +13,7 @@ exports.generateThumbnail = functions.storage
     let imageName0 = res;
     let imageName1 = imageName0.split("%2F");
     return db.collection(imageName1[0]).add({
-        src: `https://firebasestorage.googleapis.com/v0/b/${object.bucket}/o/${res}?alt=media&token=${object.metadata.firebaseStorageDownloadTokens}`,
+      src: `https://firebasestorage.googleapis.com/v0/b/${object.bucket}/o/${res}?alt=media&token=${object.metadata.firebaseStorageDownloadTokens}`,
       thumbnail: `https://firebasestorage.googleapis.com/v0/b/${object.bucket}/o/${res}?alt=media&token=${object.metadata.firebaseStorageDownloadTokens}`,
       createAt: Date.now()
     });

@@ -1,4 +1,7 @@
-import firebase from 'firebase'
+import * as firebase from "firebase/app";
+import "firebase/storage";
+import "firebase/firestore";
+
 const config = {
     apiKey: "AIzaSyCg9Gplh3Kmz-FOFvEMjolzOkPCRbQqEFU",
     authDomain: "monakaonline.firebaseapp.com",

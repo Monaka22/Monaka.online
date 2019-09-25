@@ -16,7 +16,7 @@ export default class headerComponent extends Component {
   };
   render() {
     return (
-      <Header>
+      <Header style={{position: 'fixed',zIndex: 1, width: '100%'}}>
        <Menu
         mode="horizontal"
         style={{ lineHeight: '63px',backgroundColor:'#ACF3D3'}}

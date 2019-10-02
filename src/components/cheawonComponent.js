@@ -7,7 +7,7 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 const { Content } = Layout;
-export default class cheawonComponent extends Component {
+class cheawonComponent extends Component {
   _isMounted = false;
   constructor(props) {
     super(props);
@@ -67,3 +67,4 @@ export default class cheawonComponent extends Component {
     );
   }
 }
+export default cheawonComponent

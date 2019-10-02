@@ -7,7 +7,7 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 const { Content } = Layout;
-export default class fukaComponent extends Component {
+class fukaComponent extends Component {
   _isMounted = false;
   constructor(props) {
     super(props);
@@ -67,4 +67,4 @@ export default class fukaComponent extends Component {
     );
   }
 }
-
+export default  fukaComponent

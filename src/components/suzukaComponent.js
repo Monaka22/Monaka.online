@@ -7,7 +7,7 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 const { Content } = Layout;
-export default class suzukaComponent extends Component {
+class suzukaComponent extends Component {
   _isMounted = false;
   constructor(props) {
     super(props);
@@ -68,4 +68,4 @@ export default class suzukaComponent extends Component {
   }
 }
 
-
+export default suzukaComponent

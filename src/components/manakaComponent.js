@@ -7,7 +7,7 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 const { Content } = Layout;
-export default class manakaComponent extends Component {
+class manakaComponent extends Component {
   _isMounted = false;
   constructor(props) {
     super(props);
@@ -68,4 +68,4 @@ export default class manakaComponent extends Component {
   }
 }
 
-
+export default manakaComponent

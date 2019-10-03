@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Upload, Icon, Select, Form, Button,Layout,Card } from "antd";
 import { storage } from "../config/firebaseConfig";
+
+import {connect} from 'react-redux'
+
 const { Option } = Select;
 const { Content } = Layout;
 function getBase64(img, callback) {
@@ -8,7 +11,7 @@ function getBase64(img, callback) {
   reader.addEventListener("load", () => callback(reader.result));
   reader.readAsDataURL(img);
 }
-class upload extends Component {
+class uploadPhoto extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -86,6 +89,8 @@ class upload extends Component {
           <Form.Item {...tailFormItemLayout}>
             <Select
               onSelect={(value, event) => this.handleOnChange(value, event)}
+              style={{ width: 200 }}
+              defaultValue="cheawon"
             >
               <Option value="cheawon">cheawon</Option>
               <Option value="ruka">ruka</Option>
@@ -113,4 +118,14 @@ class upload extends Component {
     );
   }
 }
-export default upload;
+const mapStateToProps = (state) => ({
+  isLoading: state.loading.isLoading
+})
+
+const mapDispatchToProps = {
+  
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(uploadPhoto);

@@ -5,6 +5,8 @@ import { db } from "../config/firebaseConfig";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+import {connect} from 'react-redux'
+
 const MySwal = withReactContent(Swal);
 const { Content } = Layout;
 class manakaComponent extends Component {
@@ -68,4 +70,14 @@ class manakaComponent extends Component {
   }
 }
 
-export default manakaComponent
+const mapStateToProps = (state) => ({
+  isLoading: state.loading.isLoading
+})
+
+const mapDispatchToProps = {
+  
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(manakaComponent);

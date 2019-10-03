@@ -5,6 +5,8 @@ import { db } from "../config/firebaseConfig";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+import {connect} from 'react-redux'
+
 const MySwal = withReactContent(Swal);
 const { Content } = Layout;
 class fukaComponent extends Component {
@@ -67,4 +69,15 @@ class fukaComponent extends Component {
     );
   }
 }
-export default  fukaComponent
+
+const mapStateToProps = (state) => ({
+  isLoading: state.loading.isLoading
+})
+
+const mapDispatchToProps = {
+  
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(fukaComponent);

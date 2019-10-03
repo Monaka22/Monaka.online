@@ -3,7 +3,7 @@ import "antd/dist/antd.css";
 import "./App.css";
 import history from './utils/history'
 import { Layout } from "antd";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { connect } from 'react-redux'
 import LoadingOverlay from 'react-loading-overlay';
 import PropagateLoader from 'react-spinners/PropagateLoader'
@@ -15,16 +15,12 @@ import Fuka from "./components/fukaComponent";
 import Manaka from "./components/manakaComponent";
 import Suzuka from "./components/suzukaComponent";
 import Upload from "./components/upload";
+import Delete from "./components/deletePhoto";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    console.log(this.props)
-  }
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Suspense fallback={null}>
         <LoadingOverlay
           active={this.props.isLoading}
@@ -41,13 +37,14 @@ class App extends Component {
                 <Route exact={true} path="/manaka" component={Manaka} />
                 <Route exact={true} path="/suzuka" component={Suzuka} />
                 <Route exact={true} path="/UploadNewPhotoByDojeed" component={Upload} />
+                <Route exact={true} path="/DeletePhotoByDojeed" component={Delete} />
               </div>
             </Switch>
           </Layout>
         </Router>
         </LoadingOverlay>
         </Suspense>
-      </div>
+        </React.Fragment>
     );
   }
 }

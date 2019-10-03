@@ -5,6 +5,8 @@ import { Layout, Card } from "antd";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
+import { connect } from "react-redux";
+
 const MySwal = withReactContent(Swal);
 const { Content } = Layout;
 class cheawonComponent extends Component {
@@ -61,10 +63,20 @@ class cheawonComponent extends Component {
     return (
       <Card>
         <Content>
-          <Gallery  images={this.state.photos}/>
+          <Gallery images={this.state.photos}/>
         </Content>
       </Card>
     );
   }
 }
-export default cheawonComponent
+const mapStateToProps = (state) => ({
+  isLoading: state.loading.isLoading
+})
+
+const mapDispatchToProps = {
+  
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(cheawonComponent);

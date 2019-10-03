@@ -24,12 +24,12 @@ onClose = () => {
        <Menu
         mode="horizontal"
         style={{ lineHeight: '64px',backgroundColor:'#ACF3D3'}}
-        selectedKeys={pathname === '/'?'1'
+        selectedKeys={[pathname === '/'?'1'
         :pathname === '/manaka'?'2'
         :pathname === '/ruka'?'3'
         :pathname === '/fuka'?'4'
         :pathname === '/suzuka'?'5'
-        :null}
+        :null]}
       >
         <Menu.Item key="1"><Link to="/">김채원</Link></Menu.Item>
         <Menu.Item key="2"><Link to="/manaka">志田愛佳</Link></Menu.Item>

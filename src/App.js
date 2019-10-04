@@ -1,12 +1,12 @@
 import React, { Component, Suspense } from "react";
 import "antd/dist/antd.css";
 import "./App.css";
-import history from './utils/history'
+import history from "./utils/history";
 import { Layout } from "antd";
 import { Router, Route, Switch } from "react-router-dom";
-import { connect } from 'react-redux'
-import LoadingOverlay from 'react-loading-overlay';
-import PropagateLoader from 'react-spinners/PropagateLoader'
+import { connect } from "react-redux";
+import LoadingOverlay from "react-loading-overlay";
+import PropagateLoader from "react-spinners/PropagateLoader";
 
 import Header from "./components/headerComponent";
 import Chaewon from "./components/cheawonComponent";
@@ -20,43 +20,56 @@ import Delete from "./components/deletePhoto";
 class App extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div>
         <Suspense fallback={null}>
-        <LoadingOverlay
-          active={this.props.isLoading}
-          spinner={<PropagateLoader color={'#F5A623'} size={40} sizeUnit={'px'}/>}
-        >
-        <Router history={history}>
-          <Layout>
-            <Header />
-            <Switch>
-              <div style={{ paddingTop: 65 }}>
-                <Route exact={true} path="/" component={Chaewon} />
-                <Route exact={true} path="/ruka" component={Ruka} />
-                <Route exact={true} path="/fuka" component={Fuka} />
-                <Route exact={true} path="/manaka" component={Manaka} />
-                <Route exact={true} path="/suzuka" component={Suzuka} />
-                <Route exact={true} path="/UploadNewPhotoByDojeed" component={Upload} />
-                <Route exact={true} path="/DeletePhotoByDojeed" component={Delete} />
-              </div>
-            </Switch>
-          </Layout>
-        </Router>
-        </LoadingOverlay>
+          <LoadingOverlay
+            active={this.props.isLoading}
+            spinner={
+              <PropagateLoader color={"#F5A623"} size={40} sizeUnit={"px"} />
+            }
+          >
+            <Router history={history}>
+            <React.Fragment>
+              <Layout>
+                <Header />
+                <Switch>
+                  <div style={{ paddingTop: 65 }}>
+                    <Route exact={true} path="/" component={Chaewon} />
+                    <Route exact={true} path="/ruka" component={Ruka} />
+                    <Route exact={true} path="/fuka" component={Fuka} />
+                    <Route exact={true} path="/manaka" component={Manaka} />
+                    <Route exact={true} path="/suzuka" component={Suzuka} />
+                    <Route
+                      exact={true}
+                      path="/UploadNewPhotoByDojeed"
+                      component={Upload}
+                    />
+                    <Route
+                      exact={true}
+                      path="/DeletePhotoByDojeed"
+                      component={Delete}
+                    />
+                  </div>
+                </Switch>
+              </Layout>
+              </React.Fragment>
+            </Router>
+          </LoadingOverlay>
         </Suspense>
-        </React.Fragment>
+      </div>
     );
   }
 }
 function mapStateToProps(state) {
   return {
-      isLoading: state.loading.isLoading,
-  }
+    isLoading: state.loading.isLoading
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-
-  }
+  return {};
 }
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

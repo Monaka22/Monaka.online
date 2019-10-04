@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { Upload, Icon, Select, Form, Button,Layout,Card } from "antd";
+import { Upload, Icon, Select, Form, Button, Layout, Card } from "antd";
 import { storage } from "../config/firebaseConfig";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
+const MySwal = withReactContent(Swal);
 const { Option } = Select;
 const { Content } = Layout;
 function getBase64(img, callback) {
@@ -17,12 +20,22 @@ class uploadPhoto extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       imageUrl: [],
-      name: ""
+      name: "cheawon"
     };
   }
   handleSubmit = e => {
     e.preventDefault();
+    MySwal.fire({
+      title: 'อัพโหลดรูปภาพ.',
+      allowEscapeKey: false,
+      allowOutsideClick: false,
+      onOpen: () => {
+        MySwal.showLoading();
+      }
+    })
     const imageUrl = this.state.imageUrl;
+    let back = () =>  this.props.history.push({ pathname: "/" });
+    const imageUrlArray = []
     for (let i = 0; i < imageUrl.length; i++) {
       const imageName = Date.now() + ".jpg";
       const uploadTask = storage
@@ -40,13 +53,23 @@ class uploadPhoto extends Component {
             .child(imageName)
             .getDownloadURL()
             .then(async url => {
-              console.log(url);
+              await imageUrlArray.push(url)
+              if(i >= imageUrl.length-1){
+                (async function wait() {
+                  if ( imageUrlArray.length === imageUrl.length ) {
+                    await MySwal.fire(
+                      'เพิ่มรูปภาพแห่งความทรงจำ!!!',
+                      'You clicked the button!',
+                      'success'
+                    )
+                   await back(); 
+                  }
+                })();
+              }
             });
         }
       );
     }
-    alert("SAVE PHOTO SUCCESS.")
-    this.props.history.push({ pathname: "/" });
   };
   handleOnChange = (value, event) => {
     this.setState({ name: value });
@@ -83,48 +106,46 @@ class uploadPhoto extends Component {
       }
     };
     return (
-        <Content>
-            <Card>
-        <Form style={{ margin: "30px 0 0 0"}} onSubmit={this.handleSubmit}>
-          <Form.Item {...tailFormItemLayout}>
-            <Select
-              onSelect={(value, event) => this.handleOnChange(value, event)}
-              style={{ width: 200 }}
-              defaultValue="cheawon"
-            >
-              <Option value="cheawon">cheawon</Option>
-              <Option value="ruka">ruka</Option>
-              <Option value="fuka">fuka</Option>
-              <Option value="manaka">manaka</Option>
-              <Option value="suzuka">suzuka</Option>
-            </Select>
-          </Form.Item>
-          <Form.Item {...tailFormItemLayout}>
-            <Dragger {...fileUploadProps}>
-              <p className="ant-upload-drag-icon">
-                <Icon type="inbox" />
-              </p>
-              <p className="ant-upload-text">Upload Photo</p>
-            </Dragger>
-          </Form.Item>
-          <Form.Item {...tailFormItemLayout}>
-            <Button type="primary" htmlType="submit">
-              Save
-            </Button>
-          </Form.Item>
-        </Form>
+      <Content>
+        <Card>
+          <Form style={{ margin: "30px 0 0 0" }} onSubmit={this.handleSubmit}>
+            <Form.Item {...tailFormItemLayout}>
+              <Select
+                onSelect={(value, event) => this.handleOnChange(value, event)}
+                style={{ width: 200 }}
+                defaultValue="cheawon"
+              >
+                <Option value="cheawon">cheawon</Option>
+                <Option value="ruka">ruka</Option>
+                <Option value="fuka">fuka</Option>
+                <Option value="manaka">manaka</Option>
+                <Option value="suzuka">suzuka</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item {...tailFormItemLayout}>
+              <Dragger {...fileUploadProps}>
+                <p className="ant-upload-drag-icon">
+                  <Icon type="inbox" />
+                </p>
+                <p className="ant-upload-text">เพิ่มไฟล์รูป</p>
+              </Dragger>
+            </Form.Item>
+            <Form.Item {...tailFormItemLayout}>
+              <Button type="primary" htmlType="submit">
+                บันทึก
+              </Button>
+            </Form.Item>
+          </Form>
         </Card>
       </Content>
     );
   }
 }
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isLoading: state.loading.isLoading
-})
+});
 
-const mapDispatchToProps = {
-  
-}
+const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps

@@ -21,13 +21,14 @@ class cheawonComponent extends Component {
   componentDidMount() {
     this._isMounted = true;
     MySwal.fire({
-      title: 'โหลดภาพอยู่รอแป๊บดิ!!!',
+      title: "โหลดภาพอยู่รอแป๊บดิ!!!",
+      text: "รูปเยอะอาจจะโหลดนาน",
       allowEscapeKey: false,
       allowOutsideClick: false,
       onOpen: () => {
         MySwal.showLoading();
       }
-    })
+    });
     this.fetchAuthFromLocalStorage();
   }
   componentWillUnmount() {
@@ -36,16 +37,16 @@ class cheawonComponent extends Component {
   fetchAuthFromLocalStorage() {
     const data = [];
     db.collection("cheawon")
-    .orderBy('createAt')
+      .orderBy("createAt")
       .get()
       .then(querySnapshot => {
         if (this._isMounted) {
           querySnapshot.forEach(async doc => {
-           await data.push(
+            await data.push(
               Object.assign({
-                width:NaN,
-                thumbnailHeight:NaN,
-                thumbnailWidth:NaN,
+                width: NaN,
+                thumbnailHeight: NaN,
+                thumbnailWidth: NaN,
                 marginLeft: 0,
                 scaletwidth: NaN,
                 vwidth: NaN,
@@ -63,19 +64,17 @@ class cheawonComponent extends Component {
     return (
       <Card>
         <Content>
-          <Gallery images={this.state.photos}/>
+          <Gallery enableImageSelection={false} images={this.state.photos} />
         </Content>
       </Card>
     );
   }
 }
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isLoading: state.loading.isLoading
-})
+});
 
-const mapDispatchToProps = {
-  
-}
+const mapDispatchToProps = {};
 export default connect(
   mapStateToProps,
   mapDispatchToProps

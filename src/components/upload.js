@@ -117,9 +117,9 @@ class uploadPhoto extends Component {
               >
                 <Option value="cheawon">cheawon</Option>
                 <Option value="ruka">ruka</Option>
-                <Option value="fuka">fuka</Option>
+                <Option value="fuka">yiren</Option>
                 <Option value="manaka">manaka</Option>
-                <Option value="suzuka">suzuka</Option>
+                <Option value="suzuka">itzy</Option>
               </Select>
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>

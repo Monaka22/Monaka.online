@@ -31,9 +31,9 @@ class headerComponent extends Component {
               ? "2"
               : pathname === "/ruka"
               ? "3"
-              : pathname === "/fuka"
+              : pathname === "/yiren"
               ? "4"
-              : pathname === "/suzuka"
+              : pathname === "/itzy"
               ? "5"
               : null
           ]}
@@ -48,10 +48,10 @@ class headerComponent extends Component {
             <Link to="/ruka">三品瑠香</Link>
           </Menu.Item>
           <Menu.Item key="4">
-            <Link to="/fuka">熊澤風花</Link>
+            <Link to="/yiren">王怡人</Link>
           </Menu.Item>
           <Menu.Item key="5">
-            <Link to="/suzuka">富田鈴花</Link>
+            <Link to="/itzy">ITZY</Link>
           </Menu.Item>
           <Menu.Item style={{ float: "right" }}>
             <Link to="/">

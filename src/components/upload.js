@@ -90,7 +90,7 @@ class uploadPhoto extends Component {
     const fileUploadProps = {
       name: "file",
       multiple: true,
-      action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+      action: "https://asia-east2-ice-suppliers-dev.cloudfunctions.net/upload",
       onChange: this.handleChange
     };
     const tailFormItemLayout = {
